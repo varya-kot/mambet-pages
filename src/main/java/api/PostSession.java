@@ -16,6 +16,9 @@ public class PostSession {
         String email = "example@example.com";
         String password = "password";
 
+        PostSession postSession = new PostSession();
+        postSession.sendPost(siteName, email, password);
+
     }
 
 
