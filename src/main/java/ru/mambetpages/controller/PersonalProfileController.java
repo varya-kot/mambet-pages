@@ -9,11 +9,11 @@ import ru.mambetpages.dto.PutProfileDto;
 
 import java.util.UUID;
 
-@RestController()
+@RestController
 @RequestMapping(value = "/api/v1/profiles")
 @Tag(name = "Личный кабинет")
 public class PersonalProfileController {
-    @GetMapping()
+    @GetMapping
     @Operation(summary = "Получение данных о профиле")
     public GetProfileDto getProfile(@Parameter(description = "Айди профиля",
                                                example = "bae588b0-8a55-4c26-bfb4-7dbff0ab0b59")
@@ -29,8 +29,8 @@ public class PersonalProfileController {
         return profileDto;
     }
 
-    @PutMapping()
-    @Operation(summary = "Получение данных о профиле")
+    @PutMapping
+    @Operation(summary = "Изменение данных профиля")
     public GetProfileDto putProfile(@RequestBody PutProfileDto profile) {
         GetProfileDto profileDto = new GetProfileDto();
 
@@ -43,4 +43,3 @@ public class PersonalProfileController {
         return profileDto;
     }
 }
-
