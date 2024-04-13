@@ -1,6 +1,7 @@
 package ru.mambetpages.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import ru.mambetpages.dto.GetProfileDto;
@@ -14,7 +15,9 @@ import java.util.UUID;
 public class PersonalProfileController {
     @GetMapping()
     @Operation(summary = "Получение данных о профиле")
-    public GetProfileDto getProfile(@RequestParam UUID id) {
+    public GetProfileDto getProfile(@Parameter(description = "Айди профиля",
+                                               example = "bae588b0-8a55-4c26-bfb4-7dbff0ab0b59")
+                                    @RequestParam UUID id) {
         GetProfileDto profileDto = new GetProfileDto();
 
         profileDto.setName("Имя");
