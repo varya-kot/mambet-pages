@@ -5,15 +5,15 @@ import lombok.Data;
 
 @Data
 public class PutProfileDto {
-    @Schema(name = "Имя пользователя")
-    String name;
+    @Schema(description ="Имя пользователя")
+    private String name;
 
-    @Schema(name = "Фамилия пользователя")
-    String lastName;
+    @Schema(description ="Фамилия пользователя")
+    private String lastName;
 
-    @Schema(name = "Описание профиля")
-    String description;
+    @Schema(description = "Описание профиля")
+    private String description;
 
-    @Schema(name = "Фотография профиля")
-    String photo;
+    @Schema(description = "Фотография профиля")
+    private String photo;
 }
