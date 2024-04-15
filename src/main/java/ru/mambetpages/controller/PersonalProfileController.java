@@ -133,7 +133,7 @@ public class PersonalProfileController {
         secondArticle.setAuthor(authorDto);
         secondArticle.setViews(222);
 
-        articleDto.setArticlesFromProfile(articles);
+        articleDto.setArticles(articles);
         articleDto.setPagesCount(1);
 
         return articleDto;

@@ -6,9 +6,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mambetpages.dto.AuthorDto;
 import ru.mambetpages.dto.GetArticleDto;
+import ru.mambetpages.dto.GetArticleShortDto;
+import ru.mambetpages.dto.GetArticlesDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,48 @@ public class ArticleController {
         articleDto.setPublishDate(LocalDateTime.MIN);
         articleDto.setAuthor(authorDto);
         articleDto.setViews(123);
+
+        return articleDto;
+    }
+
+    @GetMapping
+    @Operation(summary = "Получение списка статей")
+    public GetArticlesDto getArticles(@RequestParam("page") int page,
+                                      @RequestParam("size") int size) {
+        GetArticlesDto articleDto = new GetArticlesDto();
+        GetArticleShortDto firstArticle = new GetArticleShortDto();
+        GetArticleShortDto secondArticle = new GetArticleShortDto();
+        AuthorDto authorDto = new AuthorDto();
+        List<GetArticleShortDto> articles = new ArrayList<>();
+
+        articles.add(firstArticle);
+        articles.add(secondArticle);
+
+        authorDto.setName("Ицык");
+        authorDto.setLastName("Цыпер");
+        authorDto.setId(UUID.randomUUID());
+        authorDto.setPhoto("Фото");
+
+        firstArticle.setId(UUID.randomUUID());
+        firstArticle.setTitle("Название первой статьи");
+        firstArticle.setContent("Содержание первой статьи");
+        firstArticle.setImage("Изображение первой статьи");
+        firstArticle.setTags(List.of("Тег первой статьи", "Еще один тег первой статьи", "Третий тег первой статьи", "Последний тег первой статьи"));
+        firstArticle.setPublishDate(LocalDateTime.MIN);
+        firstArticle.setAuthor(authorDto);
+        firstArticle.setViews(111);
+
+        secondArticle.setId(UUID.randomUUID());
+        secondArticle.setTitle("Название второй статьи");
+        secondArticle.setContent("Содержание второй статьи");
+        secondArticle.setImage("Изображение второй статьи");
+        secondArticle.setTags(List.of("Тег второй статьи", "Еще один тег второй статьи", "Третий тег второй статьи", "Последний тег второй статьи"));
+        secondArticle.setPublishDate(LocalDateTime.MIN);
+        secondArticle.setAuthor(authorDto);
+        secondArticle.setViews(222);
+
+        articleDto.setArticles(articles);
+        articleDto.setPagesCount(76);
 
         return articleDto;
     }
