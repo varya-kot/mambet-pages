@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class GetProfileDto {
-    @Schema(description ="Имя пользователя")
+    @Schema(description = "Имя пользователя")
     private String name;
 
     @Schema(description = "Фамилия пользователя")
