@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class LoginRsDto {
-    @Schema(description ="Первый вход")
+    @Schema(description = "Первый вход")
     private boolean firstLogin;
 }

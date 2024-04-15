@@ -62,11 +62,15 @@ public class PersonalProfileController {
     }
 
     @PostMapping("sessions")
-    @Operation(summary = "Вход в профиль\n" +
-            "Вася вошел в первый раз\n" +
-            "Петя вошел в 3 раз\n" +
-            "Егор не может авторизоваться\n" +
-            "У остальных ошибка 500")
+    @Operation(
+            summary = """
+                    Вход в профиль
+                    Вася вошел в первый раз
+                    Петя вошел в 3 раз
+                    Егор не может авторизоваться
+                    У остальных ошибка 500
+                    """
+    )
     public ResponseEntity<?> login(@RequestBody LoginDto login) {
         System.out.println(login);
         LoginRsDto loginDto = new LoginRsDto();
@@ -87,7 +91,8 @@ public class PersonalProfileController {
 
     @DeleteMapping("sessions")
     @Operation(summary = "Выход из профиля")
-    public void logout() {}
+    public void logout() {
+    }
 
     @GetMapping("{profile-id}/articles")
     @Operation(summary = "Получение статей пользователя")
