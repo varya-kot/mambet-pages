@@ -3,9 +3,13 @@ package ru.mambetpages.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
-public class GetArticleDto {
+public class ArticleFromProfileDto {
+    @Schema(description = "id статьи")
+    private UUID id;
+
     @Schema(description = "Название статьи")
     private String title;
 
@@ -26,4 +30,5 @@ public class GetArticleDto {
 
     @Schema(description = "Автор")
     private AuthorDto author;
+
 }
