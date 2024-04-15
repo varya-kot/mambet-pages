@@ -1,5 +1,14 @@
 name: Java CI with Maven
 
+on:
+  push:
+    branches:
+      - "main"
+      - "release/*"
+      - "feature/*"
+      - "bugfix/*"
+  pull_request:
+
 jobs:
   build:
 
