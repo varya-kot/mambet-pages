@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mambetpages.dto.AuthorDto;
 import ru.mambetpages.dto.GetArticleDto;
-import ru.mambetpages.dto.GetArticlesDto;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
