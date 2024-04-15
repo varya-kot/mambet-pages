@@ -7,7 +7,6 @@ on:
       - "release/*"
       - "feature/*"
       - "bugfix/*"
-  pull_request:
 
 jobs:
   build:
