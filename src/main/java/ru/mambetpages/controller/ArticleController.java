@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mambetpages.dto.AuthorDto;
 import ru.mambetpages.dto.GetArticleDto;
+import ru.mambetpages.dto.GetArticlesDto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,6 +27,7 @@ public class ArticleController {
                                         @PathVariable UUID id) {
         GetArticleDto articleDto = new GetArticleDto();
         AuthorDto authorDto = new AuthorDto();
+        List<String> tags = new ArrayList<>();
 
         authorDto.setName("Ицык");
         authorDto.setLastName("Цыпер");
@@ -32,9 +36,10 @@ public class ArticleController {
 
         articleDto.setTitle("Название статьи");
         articleDto.setContent("Содержание статьи");
-        articleDto.setTags(new String[]{"Тег статьи", "Еще один тег статьи", "Третий тег статьи", "Последний тег статьи"});
+        articleDto.setTags(List.of("Тег статьи", "Еще один тег статьи", "Третий тег статьи", "Последний тег статьи"));
         articleDto.setPublishDate(LocalDateTime.MIN);
         articleDto.setAuthor(authorDto);
+        articleDto.setViews(123);
 
         return articleDto;
     }

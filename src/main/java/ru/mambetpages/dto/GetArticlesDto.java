@@ -2,12 +2,13 @@ package ru.mambetpages.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import java.util.List;
 
 @Data
-public class GetArticleFromProfileDto {
+public class GetArticlesDto {
     @Schema(description = "Общее количество страниц")
-    private int pagesCount = 10;
+    private Integer pagesCount;
 
     @Schema(description = "Статьи")
-    private ArticleFromProfileDto[] articlesFromProfile;
+    private List<GetArticleShortDto> articlesFromProfile;
 }

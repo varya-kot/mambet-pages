@@ -14,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.mambetpages.dto.ArticleFromProfileDto;
+import ru.mambetpages.dto.GetArticleShortDto;
 import ru.mambetpages.dto.AuthorDto;
-import ru.mambetpages.dto.GetArticleFromProfileDto;
+import ru.mambetpages.dto.GetArticlesDto;
 import ru.mambetpages.dto.GetProfileDto;
 import ru.mambetpages.dto.LoginDto;
 import ru.mambetpages.dto.LoginRsDto;
 import ru.mambetpages.dto.PutProfileDto;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -46,7 +48,8 @@ public class PersonalProfileController {
 
     @PutMapping("{id}")
     @Operation(summary = "Изменение данных профиля")
-    public GetProfileDto putProfile(@RequestBody PutProfileDto profile) {
+    public GetProfileDto putProfile(@RequestBody PutProfileDto profile,
+                                    @PathVariable UUID id) {
         GetProfileDto profileDto = new GetProfileDto();
 
         profileDto.setName(profile.getName());
@@ -86,17 +89,21 @@ public class PersonalProfileController {
     @Operation(summary = "Выход из профиля")
     public void logout() {}
 
-    @GetMapping("{profileId}/articles")
+    @GetMapping("{profile-id}/articles")
     @Operation(summary = "Получение статей пользователя")
-    public GetArticleFromProfileDto getArticleFromProfile(@Parameter(description = "Айди профиля",
+    public GetArticlesDto getArticleFromProfile(@Parameter(description = "Айди профиля",
                 example = "bae588b0-8a55-4c26-bfb4-7dbff0ab0b59")
-                                                          @PathVariable UUID profileId,
-                                                          @RequestParam("page") int page,
-                                                          @RequestParam("size") int size) {
-        GetArticleFromProfileDto articleDto = new GetArticleFromProfileDto();
-        ArticleFromProfileDto firstArticle = new ArticleFromProfileDto();
-        ArticleFromProfileDto secondArticle = new ArticleFromProfileDto();
+                                                @PathVariable(name = "profile-id") UUID profileId,
+                                                @RequestParam("page") int page,
+                                                @RequestParam("size") int size) {
+        GetArticlesDto articleDto = new GetArticlesDto();
+        GetArticleShortDto firstArticle = new GetArticleShortDto();
+        GetArticleShortDto secondArticle = new GetArticleShortDto();
         AuthorDto authorDto = new AuthorDto();
+        List<GetArticleShortDto> articles = new ArrayList<>();
+
+        articles.add(firstArticle);
+        articles.add(secondArticle);
 
         authorDto.setName("Ицык");
         authorDto.setLastName("Цыпер");
@@ -107,19 +114,22 @@ public class PersonalProfileController {
         firstArticle.setTitle("Название первой статьи");
         firstArticle.setContent("Содержание первой статьи");
         firstArticle.setImage("Изображение первой статьи");
-        firstArticle.setTags(new String[]{"Тег первой статьи", "Еще один тег первой статьи", "Третий тег первой статьи", "Последний тег первой статьи"});
+        firstArticle.setTags(List.of("Тег первой статьи", "Еще один тег первой статьи", "Третий тег первой статьи", "Последний тег первой статьи"));
         firstArticle.setPublishDate(LocalDateTime.MIN);
         firstArticle.setAuthor(authorDto);
+        firstArticle.setViews(111);
 
         secondArticle.setId(UUID.randomUUID());
         secondArticle.setTitle("Название второй статьи");
         secondArticle.setContent("Содержание второй статьи");
         secondArticle.setImage("Изображение второй статьи");
-        secondArticle.setTags(new String[]{"Тег второй статьи", "Еще один тег второй статьи", "Третий тег второй статьи", "Последний тег второй статьи"});
+        secondArticle.setTags(List.of("Тег второй статьи", "Еще один тег второй статьи", "Третий тег второй статьи", "Последний тег второй статьи"));
         secondArticle.setPublishDate(LocalDateTime.MIN);
         secondArticle.setAuthor(authorDto);
+        secondArticle.setViews(222);
 
-        articleDto.setArticlesFromProfile(new ArticleFromProfileDto[]{firstArticle, secondArticle});
+        articleDto.setArticlesFromProfile(articles);
+        articleDto.setPagesCount(1);
 
         return articleDto;
     }

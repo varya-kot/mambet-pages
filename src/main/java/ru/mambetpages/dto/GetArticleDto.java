@@ -3,6 +3,7 @@ package ru.mambetpages.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class GetArticleDto {
@@ -16,10 +17,10 @@ public class GetArticleDto {
     private String image;
 
     @Schema(description = "Теги")
-    private String[] tags;
+    private List<String> tags;
 
     @Schema(description = "Просмотры")
-    private int views = 0;
+    private Integer views;
 
     @Schema(description = "Дата публикации")
     private LocalDateTime publishDate;
