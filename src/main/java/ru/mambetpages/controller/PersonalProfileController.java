@@ -44,7 +44,7 @@ public class PersonalProfileController {
         return profileDto;
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     @Operation(summary = "Изменение данных профиля")
     public GetProfileDto putProfile(@RequestBody PutProfileDto profile) {
         GetProfileDto profileDto = new GetProfileDto();
