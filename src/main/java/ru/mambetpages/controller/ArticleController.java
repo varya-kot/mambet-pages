@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,7 @@ import ru.mambetpages.dto.AuthorDto;
 import ru.mambetpages.dto.GetArticleDto;
 import ru.mambetpages.dto.GetArticleShortDto;
 import ru.mambetpages.dto.GetArticlesDto;
+import ru.mambetpages.dto.PostArticleDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,16 +55,22 @@ public class ArticleController {
         GetArticlesDto articleDto = new GetArticlesDto();
         GetArticleShortDto firstArticle = new GetArticleShortDto();
         GetArticleShortDto secondArticle = new GetArticleShortDto();
-        AuthorDto authorDto = new AuthorDto();
+        AuthorDto firstAuthorDto = new AuthorDto();
+        AuthorDto secondAuthorDto = new AuthorDto();
         List<GetArticleShortDto> articles = new ArrayList<>();
 
         articles.add(firstArticle);
         articles.add(secondArticle);
 
-        authorDto.setName("Ицык");
-        authorDto.setLastName("Цыпер");
-        authorDto.setId(UUID.randomUUID());
-        authorDto.setPhoto("Фото");
+        firstAuthorDto.setName("Ицык");
+        firstAuthorDto.setLastName("Цыпер");
+        firstAuthorDto.setId(UUID.randomUUID());
+        firstAuthorDto.setPhoto("Фото");
+
+        secondAuthorDto.setName("Игорь");
+        secondAuthorDto.setLastName("Цыба");
+        secondAuthorDto.setId(UUID.randomUUID());
+        secondAuthorDto.setPhoto("Фото");
 
         firstArticle.setId(UUID.randomUUID());
         firstArticle.setTitle("Название первой статьи");
@@ -69,7 +78,7 @@ public class ArticleController {
         firstArticle.setImage("Изображение первой статьи");
         firstArticle.setTags(List.of("Тег первой статьи", "Еще один тег первой статьи", "Третий тег первой статьи", "Последний тег первой статьи"));
         firstArticle.setPublishDate(LocalDateTime.MIN);
-        firstArticle.setAuthor(authorDto);
+        firstArticle.setAuthor(firstAuthorDto);
         firstArticle.setViews(111);
 
         secondArticle.setId(UUID.randomUUID());
@@ -78,12 +87,25 @@ public class ArticleController {
         secondArticle.setImage("Изображение второй статьи");
         secondArticle.setTags(List.of("Тег второй статьи", "Еще один тег второй статьи", "Третий тег второй статьи", "Последний тег второй статьи"));
         secondArticle.setPublishDate(LocalDateTime.MIN);
-        secondArticle.setAuthor(authorDto);
+        secondArticle.setAuthor(secondAuthorDto);
         secondArticle.setViews(222);
 
         articleDto.setArticles(articles);
         articleDto.setPagesCount(76);
 
         return articleDto;
+    }
+
+    @PostMapping
+    @Operation(summary = "Создание новой статьи")
+    public PostArticleDto postArticle(@RequestBody PostArticleDto articleDto) {
+        PostArticleDto publishArticle = new PostArticleDto();
+
+        publishArticle.setTitle(articleDto.getTitle());
+        publishArticle.setContent(articleDto.getContent());
+        publishArticle.setImage(articleDto.getImage());
+        publishArticle.setTags(articleDto.getTags());
+
+        return publishArticle;
     }
 }
