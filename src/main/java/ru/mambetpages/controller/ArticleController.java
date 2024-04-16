@@ -31,7 +31,6 @@ public class ArticleController {
                                         @PathVariable UUID id) {
         GetArticleDto articleDto = new GetArticleDto();
         AuthorDto authorDto = new AuthorDto();
-        List<String> tags = new ArrayList<>();
 
         authorDto.setName("Ицык");
         authorDto.setLastName("Цыпер");
