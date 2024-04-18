@@ -4,9 +4,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Data
-public class GetArticleDto {
+public class ArticleGetShortDto {
+    @Schema(description = "id статьи")
+    private UUID id;
+
     @Schema(description = "Название статьи")
     private String title;
 

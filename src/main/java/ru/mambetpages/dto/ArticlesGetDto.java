@@ -5,10 +5,10 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class GetArticlesDto {
+public class ArticlesGetDto {
     @Schema(description = "Общее количество страниц")
     private Integer pagesCount;
 
     @Schema(description = "Статьи")
-    private List<GetArticleShortDto> articles;
+    private List<ArticleGetShortDto> articles;
 }

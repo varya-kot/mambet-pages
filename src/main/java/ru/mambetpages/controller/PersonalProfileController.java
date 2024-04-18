@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.mambetpages.dto.GetArticleShortDto;
+import ru.mambetpages.dto.ArticleGetShortDto;
 import ru.mambetpages.dto.AuthorDto;
-import ru.mambetpages.dto.GetArticlesDto;
-import ru.mambetpages.dto.GetProfileDto;
+import ru.mambetpages.dto.ArticlesGetDto;
+import ru.mambetpages.dto.ProfileGetDto;
 import ru.mambetpages.dto.LoginDto;
 import ru.mambetpages.dto.LoginRsDto;
-import ru.mambetpages.dto.PutProfileDto;
+import ru.mambetpages.dto.ProfilePutDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +32,10 @@ import java.util.UUID;
 public class PersonalProfileController {
     @GetMapping("{id}")
     @Operation(summary = "Получение данных о профиле")
-    public GetProfileDto getProfile(@Parameter(description = "Айди профиля",
+    public ProfileGetDto getProfile(@Parameter(description = "Айди профиля",
             example = "bae588b0-8a55-4c26-bfb4-7dbff0ab0b59")
                                     @PathVariable UUID id) {
-        GetProfileDto profileDto = new GetProfileDto();
+        ProfileGetDto profileDto = new ProfileGetDto();
 
         profileDto.setName("Имя");
         profileDto.setLastName("Фамилия");
@@ -48,9 +48,9 @@ public class PersonalProfileController {
 
     @PutMapping("{id}")
     @Operation(summary = "Изменение данных профиля")
-    public GetProfileDto putProfile(@RequestBody PutProfileDto profile,
+    public ProfileGetDto putProfile(@RequestBody ProfilePutDto profile,
                                     @PathVariable UUID id) {
-        GetProfileDto profileDto = new GetProfileDto();
+        ProfileGetDto profileDto = new ProfileGetDto();
 
         profileDto.setName(profile.getName());
         profileDto.setLastName(profile.getLastName());
@@ -96,16 +96,16 @@ public class PersonalProfileController {
 
     @GetMapping("{profile-id}/articles")
     @Operation(summary = "Получение статей пользователя")
-    public GetArticlesDto getArticleFromProfile(@Parameter(description = "Айди профиля",
+    public ArticlesGetDto getArticleFromProfile(@Parameter(description = "Айди профиля",
                 example = "bae588b0-8a55-4c26-bfb4-7dbff0ab0b59")
                                                 @PathVariable(name = "profile-id") UUID profileId,
                                                 @RequestParam("page") int page,
                                                 @RequestParam("size") int size) {
-        GetArticlesDto articleDto = new GetArticlesDto();
-        GetArticleShortDto firstArticle = new GetArticleShortDto();
-        GetArticleShortDto secondArticle = new GetArticleShortDto();
+        ArticlesGetDto articleDto = new ArticlesGetDto();
+        ArticleGetShortDto firstArticle = new ArticleGetShortDto();
+        ArticleGetShortDto secondArticle = new ArticleGetShortDto();
         AuthorDto authorDto = new AuthorDto();
-        List<GetArticleShortDto> articles = new ArrayList<>();
+        List<ArticleGetShortDto> articles = new ArrayList<>();
 
         articles.add(firstArticle);
         articles.add(secondArticle);
