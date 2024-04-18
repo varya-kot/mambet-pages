@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-public class GetProfileDto {
+public class ProfilePutDto {
     @Schema(description = "Имя пользователя")
     private String name;
 
@@ -16,7 +16,4 @@ public class GetProfileDto {
 
     @Schema(description = "Фотография профиля")
     private String photo;
-
-    @Schema(description = "Емайл пользователя")
-    private String email;
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-public class GetArticleDto {
+public class ArticleGetDto {
     @Schema(description = "Название статьи")
     private String title;
 
