@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mambetpages.dto.AuthorDto;
 import ru.mambetpages.dto.ArticleGetDto;
-import ru.mambetpages.dto.ArticleGetShortDto;
+import ru.mambetpages.dto.ArticleShortGetDto;
 import ru.mambetpages.dto.ArticlesGetDto;
-import ru.mambetpages.dto.PostArticleDto;
+import ru.mambetpages.dto.ArticlePostDto;
 import ru.mambetpages.dto.ArticlePutDto;
 import java.net.URI;
 import java.time.LocalDateTime;
@@ -57,11 +57,11 @@ public class ArticleController {
     public ArticlesGetDto getArticles(@RequestParam("page") int page,
                                       @RequestParam("size") int size) {
         ArticlesGetDto articleDto = new ArticlesGetDto();
-        ArticleGetShortDto firstArticle = new ArticleGetShortDto();
-        ArticleGetShortDto secondArticle = new ArticleGetShortDto();
+        ArticleShortGetDto firstArticle = new ArticleShortGetDto();
+        ArticleShortGetDto secondArticle = new ArticleShortGetDto();
         AuthorDto firstAuthorDto = new AuthorDto();
         AuthorDto secondAuthorDto = new AuthorDto();
-        List<ArticleGetShortDto> articles = new ArrayList<>();
+        List<ArticleShortGetDto> articles = new ArrayList<>();
 
         articles.add(firstArticle);
         articles.add(secondArticle);
@@ -110,7 +110,7 @@ public class ArticleController {
 
     @PostMapping
     @Operation(summary = "Создание новой статьи")
-    public ResponseEntity<?> postArticle(@Valid @RequestBody PostArticleDto articleDto) {
+    public ResponseEntity<?> postArticle(@Valid @RequestBody ArticlePostDto articleDto) {
         UUID articleId = UUID.randomUUID();
         return ResponseEntity.created(URI.create("/api/v1/articles/" + articleId)).build();
     }

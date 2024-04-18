@@ -10,5 +10,5 @@ public class ArticlesGetDto {
     private Integer pagesCount;
 
     @Schema(description = "Статьи")
-    private List<ArticleGetShortDto> articles;
+    private List<ArticleShortGetDto> articles;
 }

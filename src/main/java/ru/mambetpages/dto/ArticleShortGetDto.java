@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class ArticleGetShortDto {
+public class ArticleShortGetDto {
     @Schema(description = "id статьи")
     private UUID id;
 

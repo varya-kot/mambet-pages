@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.mambetpages.dto.ArticleGetShortDto;
+import ru.mambetpages.dto.ArticleShortGetDto;
 import ru.mambetpages.dto.AuthorDto;
 import ru.mambetpages.dto.ArticlesGetDto;
 import ru.mambetpages.dto.ProfileGetDto;
@@ -102,10 +102,10 @@ public class PersonalProfileController {
                                                 @RequestParam("page") int page,
                                                 @RequestParam("size") int size) {
         ArticlesGetDto articleDto = new ArticlesGetDto();
-        ArticleGetShortDto firstArticle = new ArticleGetShortDto();
-        ArticleGetShortDto secondArticle = new ArticleGetShortDto();
+        ArticleShortGetDto firstArticle = new ArticleShortGetDto();
+        ArticleShortGetDto secondArticle = new ArticleShortGetDto();
         AuthorDto authorDto = new AuthorDto();
-        List<ArticleGetShortDto> articles = new ArrayList<>();
+        List<ArticleShortGetDto> articles = new ArrayList<>();
 
         articles.add(firstArticle);
         articles.add(secondArticle);

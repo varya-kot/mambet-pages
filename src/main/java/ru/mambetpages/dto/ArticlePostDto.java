@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PostArticleDto {
+public class ArticlePostDto {
     @NotBlank
     @Schema(description = "Название статьи")
     private String title;
