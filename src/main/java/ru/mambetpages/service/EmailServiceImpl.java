@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailServiceImpl implements EmailService {
-
     @Value("${spring.mail.email_alias}")
     private String emailAlias;
 
