@@ -3,6 +3,15 @@ spring:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  profiles:
+    active: local
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    email_alias: ${EMAIL_ALIAS}
+    protocol: smtps
 springdoc:
   swagger-ui:
     path: api
