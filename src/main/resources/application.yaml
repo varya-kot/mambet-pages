@@ -8,9 +8,9 @@ spring:
   mail:
     host: smtp.yandex.ru
     port: 465
-    username:
-    password:
-    email_alias:
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    email_alias: ${EMAIL_ALIAS}
     protocol: smtps
 springdoc:
   swagger-ui:
