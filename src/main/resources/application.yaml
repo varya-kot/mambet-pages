@@ -21,7 +21,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${PG_USERNAME:username}
     password: ${PG_PASSWORD:password}
-    url: jdbc:postgresql://localhost:5432/mambet_pages
+    url: ${PG_URL:jdbc:postgresql://localhost:5432/mambet_pages}
   jpa:
     hibernate :
       ddl-auto : none
