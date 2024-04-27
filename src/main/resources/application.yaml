@@ -2,16 +2,38 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+#Active profile
   profiles:
     active: local
+
+#Email-agent
   mail:
-    host: smtp.yandex.ru
-    port: 465
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
-    email_alias: ${EMAIL_ALIAS}
-    protocol: smtps
+    host: ${MAIL_HOST:smtp.yandex.ru}
+    port: ${MAIL_PORT:465}
+    username: ${MAIL_USERNAME:email_username}
+    password: ${MAIL_PASSWORD:email_password}
+    email_alias: ${EMAIL_ALIAS:email_alias}
+    protocol: ${MAIL_PROTOCOL:smtps}
+
+#DB settings
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${PG_USERNAME:username}
+    password: ${PG_PASSWORD:password}
+    url: ${PG_URL:jdbc:postgresql://localhost:5432/mambet_pages}
+  jpa:
+    hibernate :
+      ddl-auto : none
+    properties:
+      hibernate:
+        dialect : org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: ${SCHEMA_NAME:mambet_pages}
+
+#Swagger
 springdoc:
   swagger-ui:
     path: api

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-table-users" author="divanov">
+        <createTable tableName="users">
+            <column name="id" type="uuid" remarks="Идентификатор пользователя">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(128)" remarks="Почта">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="hashed_password" type="varchar(256)" remarks="Хэш пароля"/>
+            <column name="first_login" type="boolean" remarks="Флаг первого входа"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
