@@ -1,0 +1,21 @@
+services:
+  mambet-pages:
+    container_name: app
+    build:
+      context: ./
+    depends_on:
+      - mambet-pages-database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mambet_pages
+      - SPRING_DATASOURCE_USERNAME=username
+      - SPRING_DATASOURCE_PASSWORD=password
+    ports: 
+      - "8080:8080"
+
+  mambet-pages-database:
+    image: postgres:13.15
+    container_name: db
+    environment:
+      POSTGRES_USER: "username"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "mambet_pages"
