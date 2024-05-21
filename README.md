@@ -6,3 +6,10 @@
 News platform for posting articles. This platform allows you to create your own articles and share them with others.
 
 Link to frontend part of application [Articles-App](https://github.com/Bombilaz/Articles-App).
+
+## Run project 
+```
+git clone https://github.com/varya-kot/mambet-pages.git
+docker compose up
+```
+To view swagger open [http://localhost:8080/api](http://localhost:8080/api)
